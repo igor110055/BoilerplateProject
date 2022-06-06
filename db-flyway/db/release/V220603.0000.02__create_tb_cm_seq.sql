@@ -2,6 +2,7 @@
 CREATE TABLE IF NOT EXISTS tb_cm_seq
 (
     seq_nm character varying(50) ,
+    seq_desc character varying(50) ,
     allocation_size bigint,
     col_nm character varying(50) ,
     crt_dtm timestamp without time zone NOT NULL,
@@ -20,6 +21,7 @@ CREATE TABLE IF NOT EXISTS tb_cm_seq
 comment on table tb_cm_seq is '시퀀스';
 
 comment on column tb_cm_seq.seq_nm is '시퀀스명';
+comment on column tb_cm_seq.seq_desc is '시퀀스설명';
 comment on column tb_cm_seq.allocation_size is '증가값';
 comment on column tb_cm_seq.col_nm is '컬럼명';
 comment on column tb_cm_seq.crt_dtm is '생성일';
