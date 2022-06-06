@@ -80,10 +80,10 @@ export  const CM_4200__역할관리_user_role_cd  = forwardRef<CM_4200__역할�
 
     const columns = [
         { key: 'ROLE_CD', name: '역할코드', width: 140 ,  sortable: true ,editor: GridTextEditor},            
-        { key: 'USER_NO', name: '사용자번호', width: 100},
+        { key: 'USER_UID', name: '사용자UID', width: 100},
         { key: "USER_NM", name: '사용자명', width: 80 ,  sortable: true  ,editor: (p:any) =>(<GridPopup p={p}   />) ,editorOptions: {editOnClick: true} },
         { key: 'USER_ID', name: '사용자ID', width: 200 ,  sortable: true },
-        { key: 'CRT_USER_NO', name: '생성자', width: 160 },
+        { key: 'CRT_USER_UID', name: '생성자UID', width: 160 },
         { key: 'CRT_DTM', name: '생성일', width: 160 },
     ];
     
@@ -184,7 +184,7 @@ const GridPopup = (props:any) =>{
             //사용자ID
             props.p.onRowChange({ ...props.p.row
                 ,USER_ID: row.USER_ID
-                ,USER_NO: row.USER_NO
+                ,USER_UID: row.USER_UID
                 ,USER_NM: row.USER_NM
                 , "_row_status":row_status 
             }, true);

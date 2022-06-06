@@ -14,7 +14,7 @@ export  const CM_4100__회원관리 = () => {
     const menuStoreContext = useContext(MenuContext)
     const {messageAlert,messageConfirm } = menuStoreContext;
     const [mode,setMode] = useState<string>("list"); /*list, view , edit ,new */
-    const [userNo,setUserNo] = useState(0);
+    const [userUid,setUserUid] = useState(0);
 
     const childRef = useRef<GridHandler>(null);
     const [useYnData,setUseYnData] = useState([]);
@@ -51,7 +51,7 @@ export  const CM_4100__회원관리 = () => {
     },[]);
 
     const columns = [
-        { key: 'USER_NO', name: 'No', width: 60 ,  sortable: true, dataType:"number"},
+        { key: 'USER_UID', name: '사용자UID', width: 60 ,  sortable: true},
         { key: 'USER_NM', name: '사용자명', width: 100 ,editor: GridTextEditor},
         { key: 'NICK_NM', name: '닉네임', width: 100 ,editor: GridTextEditor},
         { key: "USER_ID", name: '사용자ID', width: 200 ,  sortable: true  ,editor: GridTextEditor},
@@ -95,12 +95,12 @@ export  const CM_4100__회원관리 = () => {
         
     const gridOnRowClickHandler  = (row: any, column: CalculatedColumn<any, any>)=>{
         setMode("edit")
-        setUserNo(row.USER_NO)
+        setUserUid(row.USER_UID)
     }
 
     const newHandler=()=>{
         setMode("new");
-        setUserNo(0);
+        setUserUid(0);
     }
 
 
@@ -118,7 +118,7 @@ export  const CM_4100__회원관리 = () => {
                     <Button variant="contained" color="success" onClick={newHandler}>신규</Button>        
             </Stack>
             <Grid style={{ height: 200, width: '100%' }} columns={columns}  checkbox={true} showRowStatus={true} ref={childRef} onRowClick={gridOnRowClickHandler}  />
-            <CM_4100__회원관리_modify  userNo={userNo} fnSearch = {fnSearch}/>
+            <CM_4100__회원관리_modify  userUid={userUid} fnSearch = {fnSearch}/>
             </>
     )
   }

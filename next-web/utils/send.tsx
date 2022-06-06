@@ -171,7 +171,7 @@ const setSessionApi = (params:IParams,session: Session|null):any => {
              if(session.user){
                 let tmp = session.user as any;
                 params["SESSION"]=[{
-                    USER_NO: tmp.user_no,
+                    USER_UID: tmp.user_uid,
                     NICK_NM: tmp.nick_nm,
                     EMAIL: tmp.email,            
                 }]

@@ -150,10 +150,10 @@ export default MyPage
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const session = await getSession(context);
-    let user_no="";
+    let user_uid="";
     if(session && session.user) {
         const tmp = session.user as Record<string, unknown>
-        user_no=tmp.user_no as string;
+        user_uid=tmp.user_uid as string;
     } 
     if(!session){
         return { props : {users : []}}

@@ -142,7 +142,7 @@ const MenuStore = (props:any) =>{
 
     useEffect(()=>{
         if(session){        
-            const result = send("BR_CM_MAIN_FIND_TREE_BY_USER_NO", {"brRq":"SESSION", "brRs":"OUT_DATA"})
+            const result = send("BR_CM_MAIN_FIND_TREE_BY_USER", {"brRq":"SESSION", "brRs":"OUT_DATA"})
             result.then(
                 result=>{
                     //console.log({result})

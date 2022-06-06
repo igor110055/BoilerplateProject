@@ -21,7 +21,7 @@ export default NextAuth({
                     const data:any= await send_server("BR_CM_USER_signIn",{"brRq":"IN_PSET", "brRs":"OUT_RSET","IN_PSET":[{"EMAIL":email,"PWD": pwd}]},null)
                     console.log("rrrrrrrrrrrrrrr");
                     console.log(data)
-                    const user:Profile = { user_no: data.OUT_RSET[0].USER_NO, nick_nm: data.OUT_RSET[0].NICK_NM, email: data.OUT_RSET[0].EMAIL }
+                    const user:Profile = { user_uid: data.OUT_RSET[0].USER_UID, nick_nm: data.OUT_RSET[0].NICK_NM, email: data.OUT_RSET[0].EMAIL }
                     console.log(user)
                     //return user
                     return Promise.resolve(user);

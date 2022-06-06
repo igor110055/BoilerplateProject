@@ -15,14 +15,14 @@ import { CM_4100__회원관리_pwd } from './CM_4100__회원관리_pwd';
 export interface IProps {
     fnSearch: () => Promise<void>;
     setMode?: React.Dispatch<React.SetStateAction<string>>;
-    userNo?:number;
+    userUid?:number;
 }
 
 
 interface IFormInput {
     USER_ID: string;
     NICK_NM: string;
-    USER_NO: string;    
+    USER_UID: string;    
     USER_NM: string;    
     EMAIL: string;
     BIRTH: string;
@@ -33,7 +33,7 @@ interface IFormInput {
 const defaultValues = {
     USER_ID: "",
     NICK_NM: "",
-    USER_NO: "",
+    USER_UID: "",
     USER_NM: "",
     EMAIL: "",
     BIRTH: "",
@@ -63,11 +63,11 @@ export  const CM_4100__회원관리_modify = (props:IProps) => {
         options.push({value:i.toString(),text:i.toString()})
     }
     const getData= async()=>{
-        if(props.userNo!=0){
-            const data:any= await send("BR_CM_USER_retrieveByUserNo",{
+        if(props.userUid!=0){
+            const data:any= await send("BR_CM_USER_retrieveByUser",{
                 "brRq":"IN_PSET,SESSION"
                 , "brRs":"OUT_RSET"
-                ,IN_PSET:[{USER_NO:props.userNo}]
+                ,IN_PSET:[{USER_UID:props.userUid}]
             })
             if(data.OUT_RSET.length > 0) {
                 reset(data.OUT_RSET[0])
@@ -102,12 +102,12 @@ export  const CM_4100__회원관리_modify = (props:IProps) => {
         console.log("onSubmit");
           let param = [{
                USER_NM : data.USER_NM
-              ,USER_NO : data.USER_NO              
+              ,USER_UID : data.USER_UID            
               ,NICK_NM : data.NICK_NM
               ,BIRTH : data.BIRTH
               ,GNDR : data.GNDR
           }]
-          const result = send("BR_CM_USER_modifyByUserNo", {"brRq":"IN_PSET,SESSION", "brRs":"","IN_PSET" : param })
+          const result = send("BR_CM_USER_modifyByUserUid", {"brRq":"IN_PSET,SESSION", "brRs":"","IN_PSET" : param })
                 result.then(
                     result=>{
                         getData();
@@ -138,7 +138,7 @@ export  const CM_4100__회원관리_modify = (props:IProps) => {
     return (
         <>
               <Box m={2}  sx={{width: 500,height: 300,border: 0 ,mx:"auto",justifyContent: 'center'}}>
-                  //{props.userNo}//
+                  //{props.userUid}//
                       <Stack spacing={2} direction="column">
                           <FormTextFiled  name="USER_ID" control={control} label="아이디" InputProps = {{readOnly: true}} />
                           <NickNmTextFiled  name="NICK_NM" control={control} label="별명" rules={{ required: '별명을 입력해주세요.' }} readOnly={false} />
@@ -154,7 +154,7 @@ export  const CM_4100__회원관리_modify = (props:IProps) => {
                               <Button onClick={() => reset()} variant={"outlined"} fullWidth>초기화</Button>
                               <Button onClick={() => {
                         
-                                  inlineDialog(<CM_4100__회원관리_pwd userNo={props.userNo}   onCallBackChgPwd={onCallBackChgPwd} />,undefined,false,"sm"); 
+                                  inlineDialog(<CM_4100__회원관리_pwd userUid={props.userUid}   onCallBackChgPwd={onCallBackChgPwd} />,undefined,false,"sm"); 
                               }
                             } variant={"outlined"} fullWidth>비밀번호변경</Button>
                       </Stack>

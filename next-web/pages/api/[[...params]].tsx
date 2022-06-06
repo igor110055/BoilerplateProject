@@ -118,7 +118,7 @@ const parserApi = (br:string,body:any,session:any):any => {
     if(isSession ==true){
         if(session!=null){
             refDs["SESSION"]=[{
-                        USER_NO: session.user.user_no,
+                        USER_UID: session.user.user_uid,
                         NICK_NM: session.user.nick_nm,
                         EMAIL: session.user.email,            
                     }]

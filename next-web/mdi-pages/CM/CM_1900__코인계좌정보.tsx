@@ -74,7 +74,7 @@ export  const CM_1900__코인계좌정보 = () => {
     const columns = [
         { key: 'SEQ', name: 'SEQ', width: 80 ,  sortable: true, dataType:"number"  },
         { key: 'COIN_CD', name: '코인코드', width: 100  ,editor: (p:any) => (<GridCombo p={p} options={coinCd}  />) , editorOptions: {editOnClick: true}},
-        { key: 'USER_NO', name: '사용자', width: 80  ,editor: (p:any) =>(<GridPopup p={p}   />) ,editorOptions: {editOnClick: true} },
+        { key: 'USER_UID', name: '사용자UID', width: 80  ,editor: (p:any) =>(<GridPopup p={p}   />) ,editorOptions: {editOnClick: true} },
         { key: 'USE_YN', name: '사용여부', width: 80  ,editor: (p:any) => (<GridCombo p={p} options={useYnData}  />) , editorOptions: {editOnClick: true}},
         { key: "ACCESS_KEY", name: 'API접속키', width: 540 ,  sortable: true  ,editor: GridTextEditor},
         { key: 'SECRET_KEY', name: '비밀키', width: 500 ,  sortable: true ,editor: GridTextEditor},
@@ -188,7 +188,7 @@ export  const CM_1900__코인계좌정보 = () => {
             //사용자명
             //사용자ID
             props.p.onRowChange({ ...props.p.row
-                ,USER_NO: row.USER_NO
+                ,USER_UID: row.USER_UID
                 , "_row_status":row_status 
             }, true);
             inlineDialogClose();

@@ -7,7 +7,7 @@ import { PwdTextFiled } from "@/form-components/PwdTextFiled";
 
 export interface IProps {
     onCallBackChgPwd:()=>void
-    userNo?:number;
+    userUid?:number;
 }
 
 interface IFormInput {
@@ -31,7 +31,7 @@ export  const CM_4100__회원관리_pwd = (props:IProps) => {
     const onSubmit = async (data: IFormInput) => {
         console.log("onSubmit");
           let param = [{
-               USER_NO : props.userNo              
+               USER_UID : props.userUid              
               ,PWD : data.PWD
               ,REPWD : data.REPWD
           }]
@@ -59,7 +59,7 @@ export  const CM_4100__회원관리_pwd = (props:IProps) => {
         <>
               <Box m={2}  sx={{width: 500,height: 300,border: 0 ,mx:"auto",justifyContent: 'center'}}>
                   <form>
-                      {props.userNo}
+                      {props.userUid}
                       <Stack spacing={2} direction="column">
                         <PwdTextFiled  name="PWD"  control={control}  label="비밀번호"  rules={{ required: `비밀번호 required`,  minLength:{  value:3, message:"비밀번호는 3자 이상이여야 합니다" }  }} /> 
                         <PwdTextFiled name="REPWD" control={control} label="비밀번호재입력"  rules={{ required: `비밀번호재입력 required`    , validate: (value: {}) => value === password.current || "The passwords do not match"  }} />

@@ -39,7 +39,7 @@ export  const CM_2300__사용자조회 = (props:IPageProps) => {
     },[]);
 
     const columns = [
-        { key: 'USER_NO', name: '사용자번호', width: 100},
+        { key: 'USER_UID', name: '사용자UID', width: 100},
         { key: "USER_NM", name: '사용자명', width: 200 ,  sortable: true},
         { key: "USER_ID", name: '사용자ID', width: 200 ,  sortable: true},
         { key: 'USE_YN', name: '사용여부', width: 100 ,  sortable: true },
