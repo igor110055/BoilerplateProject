@@ -57,8 +57,8 @@ export  const CM_1600__테이블시퀀스 = () => {
     },[]);
 
     const columns = [
-        { key: 'SEQ', name: 'SEQ', width: 60  ,minWidth:60,  sortable: true, dataType:"number"  },
         { key: 'SEQ_NM', name: '시퀀스명', width: 240 ,editor: GridTextEditor},
+        { key: 'SEQ_DESC', name: '시퀀스설명', width: 240  ,minWidth:60,  sortable: true,editor: GridTextEditor},
         { key: "SEQ_NO", name: '시퀀스값', width: 80 ,  sortable: true  ,editor: GridTextEditor},
         { key: 'TB_NM', name: '테이블명', width: 240 ,  sortable: true  ,editor: GridTextEditor},
         { key: 'COL_NM', name: '컬러명', width: 200 ,editor: GridTextEditor},            

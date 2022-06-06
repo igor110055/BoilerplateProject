@@ -107,12 +107,15 @@ export  const CM_4100__회원관리_modify = (props:IProps) => {
               ,BIRTH : data.BIRTH
               ,GNDR : data.GNDR
           }]
-          const result = send("BR_CM_USER_modifyByUserUid", {"brRq":"IN_PSET,SESSION", "brRs":"","IN_PSET" : param })
+          const result = send("BR_CM_USER_modifyByUser", {"brRq":"IN_PSET,SESSION", "brRs":"","IN_PSET" : param })
                 result.then(
                     result=>{
-                        getData();
-                        //상단 회원관리도 재조회 해야한다.
-                        props.fnSearch();
+                         messageAlert("수정되었습니다.",function()  {
+                            getData();
+                            //상단 회원관리도 재조회 해야한다.
+                            props.fnSearch();
+                        });
+
                     },
                     err=>{
                       if(err.code=="USER_ERR_001"){

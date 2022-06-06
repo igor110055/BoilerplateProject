@@ -43,18 +43,11 @@ public class EncDecUtil extends SAProxy {
 
     public DataSet getSalt(DataSet InDs,String InDsNames, String outDsNames)  throws Exception {
     	DataSet OUT_DS = new DataSet();
-        DataTable OUT_RESULT = OUT_DS.addTable("OUT_RESULT");
     	DataTable OUT_RSET = OUT_DS.addTable("OUT_RSET");
-    	OUT_RESULT.addColumn("STATUS");  // E에러   S 성공
         OUT_RSET.addColumn("SALT");
-    	    
         String SALT = EncDecUtil.Salt();
-        DataRow drResult = OUT_RESULT.addRow();
         DataRow drRset = OUT_RSET.addRow();
-		
-        drResult.setString("STATUS", "S");
         drRset.setString("SALT", SALT);
- 
         return OUT_DS;
     }
 

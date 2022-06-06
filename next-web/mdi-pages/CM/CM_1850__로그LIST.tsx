@@ -23,7 +23,7 @@ export const CM_1850__로그LIST = () => {
     const childRef = useRef<GridHandler>(null);
     useEffect(()=>{
         console.log("rrrr")
-    })
+    },[])
 
     const [rows,setRows] = useState([]);
     const methods = useForm<IFormInput>({ defaultValues: defaultValues});
@@ -39,14 +39,15 @@ export const CM_1850__로그LIST = () => {
     ];
 
 
-    const fnSearch= async (data: IFormInput) => {
+    const fnSearch= async () => {
+        console.log("ddd");
         if(childRef.current){
+            console.log("ddd1111");
             childRef.current.loadData({
                                         BR:"BR_CM_API_LOG_GetApiLogList",
                                         PARAM: {
-                                            brRq : 'IN_DATA'
+                                            brRq : ''
                                             ,brRs : 'OUT_DATA'
-                                            ,IN_DATA:[data]
                                         }
                                     });
 
@@ -54,12 +55,19 @@ export const CM_1850__로그LIST = () => {
         
     }
 
-    const fnDelete= async (data: IFormInput) => {
+    const fnDelete= async () => {
         console.log("fnDelete")
-        const result:any= await send("BR_CM_API_LOG_DropLog", {
+        send("BR_CM_API_LOG_DropLog", {
             brRq : ''
            ,brRs : ''
-        })
+        }).then(function(data){
+            //_this.hideProgress();
+            if(data){
+                messageAlert("삭제되었습니다",function()  {
+                    fnSearch();
+                });
+            }
+        })               
     }
 
     const gridOnRowClickHandler  = (row: any, column: CalculatedColumn<any, any>)=>{
@@ -78,8 +86,8 @@ export const CM_1850__로그LIST = () => {
                 alignItems="flex-start"
                 spacing={0.5}
                 >
-                    <Button variant="contained" color="success"  onClick={handleSubmit(fnSearch)}>조회</Button>
-                    <Button variant="contained" color="success"  onClick={handleSubmit(fnDelete)}>삭제</Button>                    
+                    <Button variant="contained" color="success"  onClick={fnSearch}>조회</Button>
+                    <Button variant="contained" color="success"  onClick={fnDelete}>삭제</Button>                    
             </Stack>
             <Grid columns={columns} checkbox={true} ref={childRef} onRowClick={gridOnRowClickHandler}   />
             </>
