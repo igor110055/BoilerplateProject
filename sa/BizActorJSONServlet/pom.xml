@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>parent-project</artifactId>
+    <groupId>com.example</groupId>
+    <version>1.0.0</version>
+  </parent>
+
+  <groupId>com.example</groupId>
+  <artifactId>BizActorJSONServlet</artifactId>
+  <version>1.0.0</version>
+
+  <name>BizActorJSONServlet</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>2.13.3</version>
+    </dependency>
+    <dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.13.3</version>
+    </dependency>
+
+    <dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>3.1.0</version>
+    <scope>provided</scope>
+    </dependency>
+
+
+    <dependency>
+    <groupId>bizactor</groupId>
+    <artifactId>dataset</artifactId>
+    <scope>system</scope>
+    <version>1</version>
+    <systemPath>${project.basedir}/../libs/bizactor.dataset.jar</systemPath>
+    </dependency>
+
+    <dependency>
+    <groupId>server</groupId>
+    <artifactId>agent</artifactId>
+    <scope>system</scope>
+    <version>1</version>
+    <systemPath>${project.basedir}/../libs/server.agent.jar</systemPath>
+    </dependency>
+
+    <dependency>
+    <groupId>bizactor</groupId>
+    <artifactId>exception</artifactId>
+    <scope>system</scope>
+    <version>1</version>
+    <systemPath>${project.basedir}/../libs/bizactor.exception.jar</systemPath>
+    </dependency>
+
+    <dependency>
+    <groupId>com.example</groupId>
+    <artifactId>Framework</artifactId>
+    <version>1.0.0</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+    <plugins>
+      <!--
+        메이븐 dependency jar 를 포함하여 빌드하기
+		출처: https://effortmakesme.tistory.com/137 [노력이 나를 만든다.]
+    -->
+        <plugin>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<version>3.3.0</version>
+			<configuration>
+			 
+				<descriptorRefs>
+				<descriptorRef>jar-with-dependencies</descriptorRef>
+				</descriptorRefs>
+				 
+				<!-- 이건 그냥 jar의 메인 클래스 지정하는것입니다. -->
+				<!-- 그냥 올려봤습니다... 
+				<archive>
+				<mainClass>패키지를 포함한 클래스 전체이름</mainClass>
+				</manifest>
+				
+				</archive>
+				-->
+			</configuration>
+			 
+			<executions>
+			<execution>
+			<id>make-assembly</id>
+			<phase>package</phase>
+			<goals>
+			<goal>single</goal>
+			</goals>
+			</execution>
+			</executions>
+        </plugin>
+        <plugin>
+        <!-- https://www.dbility.com/40 -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>3.1.0</version>    
+            <executions>
+                <execution>
+                    <id>라이브러리복사</id>
+                    <phase>install</phase>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                    <configuration>
+                        <target>
+                                <echo>output-이동</echo>
+                                <move file="${project.basedir}\target\${project.artifactId}-${project.version}-jar-with-dependencies.jar" tofile="${project.basedir}\..\output\${project.artifactId}.jar"></move>
+                        </target>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+</project>

@@ -1,0 +1,52 @@
+plugins {
+    id "org.flywaydb.flyway" version "8.5.12"
+    id 'java-library' 
+}
+
+repositories {
+maven { url 'https://repo.maven.apache.org/maven2' }
+}
+
+
+dependencies {
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.6'
+}
+
+flyway {
+    println "abcd"
+
+    /*url = "jdbc:postgresql://192.168.0.13:5432/stockweb"*/
+    url = findProperty("server")
+    println "dddd"
+    println url
+
+    
+    user = "postgres"
+    password = "POSTGRES"
+    locations = ["filesystem:${file('db/release').absolutePath}"]
+    /*locations = ["filesystem:db/release"]*/
+    encoding = 'UTF-8'
+    outOfOrder = false // 여러브랜치에서 서로 다른 날짜로 만들어도 작동하도록
+    /*outputQueryResults = true  -- 커뮤니티버전에서 지원하지 않음*/
+    validateOnMigrate = true
+    validateMigrationNaming =true
+    sqlMigrationPrefix='V'
+    sqlMigrationSeparator='__'
+    sqlMigrationSuffixes=['sql']
+}
+
+/*
+init - SCHEMA_VERSION 을 baseline 과 함께 생성한다. 
+테이블이 이미 생성되어 있으면 수행되지 않는다.
+migrate - 스키마정보를 리얼DB에 마이그레이션한다.
+clean - flyway로 생성한 스키마를 모두 삭제한다고 하지만, 해당 데이터 베이스의 모든 테이블을 삭제한다. 
+info - DB에 적용된 스키마 정보와, 로컬에 pending 되어있는 변경 정보를 보여준다.
+validate - DB에 적용된 스키마 정보와, 로컬의 변경점을 비교하여 보여준다.
+repair - 마이그레이션 실패한 내역을 수정한다 (삭제, 교체)
+baseline - flyway로 형상 버전관리를 시작 할 baseline 을 설정한다.
+출처: https://bkim.tistory.com/2 [어쩌다, 블로그:티스토리]
+*/
+/*
+gradle  flywayMigrate -Pserver="jdbc:postgresql://192.168.0.13:5432/stockweb"  --stacktrace
+gradle  flywayClean -Pserver="jdbc:postgresql://192.168.0.13:5432/stockweb"  --stacktrace
+*/

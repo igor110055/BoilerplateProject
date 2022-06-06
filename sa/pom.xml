@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>parent-project</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <name>parent-project</name>
+  <url>http://www.example.com</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <skipTests>true</skipTests>
+  </properties>
+  <modules>
+    <module>Framework</module>
+    <module>EncDecUtils</module>
+    <module>BinanceRestApi</module>
+    <module>UpbitRestApi</module>
+    <module>GmailSend</module>
+    <module>TelegramSend</module>
+    <module>BizActorJSONServlet</module>    
+    <module>RemotePush</module>
+  </modules>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.1</version>
+          <configuration>
+            <skipTests>${skipTests}</skipTests>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
+<!--
+mvn archetype:generate -DgroupId=com.example -DartifactId=BinanceRestApi
+mvn archetype:generate -DgroupId=com.example -DartifactId=UpbitRestApi
+mvn archetype:generate -DgroupId=com.example -DartifactId=GmailSend
+mvn archetype:generate -DgroupId=com.example -DartifactId=TelegramSend
+mvn archetype:generate -DgroupId=com.example -DartifactId=EndDecUtils
+mvn archetype:generate -DgroupId=com.example -DartifactId=Framework
+mvn archetype:generate -DgroupId=com.example -DartifactId=BizActorJSONServlet
+mvn archetype:generate -DgroupId=com.example -DartifactId=RemotePush
+-->
