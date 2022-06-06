@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="maven-antrun-" default="main">
-  <target name="main">
-    <echo>output-이동</echo>
-    <move file="D:\git\BoilerplateProject\sa\GmailSend\target\GmailSend-1.0.0-jar-with-dependencies.jar" tofile="D:\git\BoilerplateProject\sa\GmailSend\..\output\GmailSend.jar"></move>
-  </target>
-</project>

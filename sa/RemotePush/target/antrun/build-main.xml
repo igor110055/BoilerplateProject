@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="maven-antrun-" default="main">
-  <target name="main">
-    <sshexec trust="true" password="admin" host="192.168.0.13" failonerror="true" timeout="20000" command="sudo service autoTomcat restart" username="jijs" />
-  </target>
-</project>
