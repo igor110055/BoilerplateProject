@@ -1,0 +1,79 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+
+    all*.exclude group: 'xml-apis', module: 'xml-apis'
+
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+	//implementation 'org.springframework.boot:spring-boot-starter-quartz'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'ch.qos.logback:logback-classic:1.2.3'
+
+	// https://mvnrepository.com/artifact/javax.mail/javax.mail-api
+	implementation 'javax.mail:javax.mail-api:1.6.2'
+	implementation 'javax.mail:mail:1.4.7'
+
+
+	compileOnly 'org.projectlombok:lombok:1.18.20'    ///docker에서  gradlew build에서 안되서 아래 것을 하나 더 추가했다.
+	implementation 'org.projectlombok:lombok:1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+
+	//runtimeOnly 'com.h2database:h2'   //이렇게 하니까. docker에서 gradle build 시 못읽는다. bootRun도 읽는다.
+	//compile group: 'org.postgresql', name: 'postgresql', version: '42.2.23'
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.23'
+
+
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.batch:spring-batch-test'
+
+	// https://mvnrepository.com/artifact/org.postgresql/postgresql
+
+
+	//  https://github.com/sieunkr/spring-boot-quartz/blob/master/spring-boot-quartz-getting-dynamic/build.gradle
+	// rest api 제공   트리거 생성 제공
+
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation('org.springframework.boot:spring-boot-starter-test')
+
+	
+    //elk 설치
+    // https://mvnrepository.com/artifact/net.logstash.logback/logstash-logback-encoder
+    /*
+    implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '7.0'
+    */
+
+    implementation('org.apache.httpcomponents:httpclient:4.5.13')   /*외부api 호출을 위해서 */
+
+}
+
+test {
+	useJUnitPlatform()
+}
+
+
+tasks.jar {
+	//https://dongjuppp.tistory.com/87
+    enabled = false
+    // Remove `plain` postfix from jar file name
+    archiveClassifier.set("")
+}

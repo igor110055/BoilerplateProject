@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+<!-- 여기 변수명을 가져다 쓰려고 한다.--> 
+  <property resource="application.yaml"/>
+
+<!--
+  <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>d:/logs/demoWeb/apilog-%d{yyyy-MM-dd}.%i.txt.zip</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>100MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS}-%green(%-5level)-%logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+-->
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+    
+      <Pattern>%d{HH:mm:ss.SSS}-%green(%-5level)-%logger{36} - %msg%n</Pattern>
+    </layout>
+  </appender>
+
+
+  <!-- logstash 4560포트 설정에 맞춰 설정 -->
+  <!--
+<appender name="LOGSTASH-SCHEDULER" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+    <destination>192.168.0.13:5000</destination>
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder"></encoder>
+</appender>
+-->
+
+   <appender name="DB" class="com.example.demoScheduler.utils.CustomDBAppender">
+    <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+      <driverClass>org.postgresql.Driver</driverClass>
+      <url>jdbc:postgresql://192.168.0.13:5432/stockweb</url>
+      <user>postgres</user>
+      <password>POSTGRES</password>
+    </connectionSource>
+  </appender>
+
+
+  <!--
+  <appender name="FLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>d:/logs/demoWeb/flonetd/flog-%d{yyyy-MM-dd}.txt.zip</fileNamePattern>
+
+    </rollingPolicy>
+    <encoder>
+
+      <pattern>%5p [%d] %msg%n</pattern>
+    </encoder>
+  </appender>
+  -->
+
+  <!-- Loggers -->
+  <logger name="org.springframework.core">
+    <level value="info"/>
+
+  </logger>
+  <logger name="org.springframework.beans">
+    <level value="info"/>
+
+  </logger>
+  <logger name="org.springframework.context">
+    <level value="info"/>
+
+  </logger>
+  <logger name="org.springframework.web">
+    <level value="info"/>
+
+  </logger>
+  <logger name="com.example.web">
+    <level value="debug"/>
+
+  </logger>
+  <logger name="java.sql">
+  <!--
+    <appender-ref ref="ROLLING"/>
+    <appender-ref ref="STDOUT"/>
+    -->
+    <level value="info"/>
+
+  </logger>
+
+
+  <!-- SQL문만을 로그로 남기며, PreparedStatement일 경우 관련된 argument 값으로 대체된 SQL문이 보여진다. -->
+  <logger name="jdbc.sqlonly" additivity="false">
+  <!--
+    <appender-ref ref="ROLLING"/>
+    <appender-ref ref="STDOUT"/>
+    -->
+    <level value="info"/>
+
+
+  </logger>
+  <!-- SQL문과 해당 SQL을 실행시키는데 수행된 시간 정보(milliseconds)를 포함한다. -->
+  <logger name="jdbc.sqltiming" additivity="false">
+    <!--<appender-ref ref="ROLLING"/>-->
+    <appender-ref ref="STDOUT"/>
+    <!--<level value="info"/>-->
+  </logger>
+  <logger name="jdbc.resultset" additivity="false">
+    <!--<appender-ref ref="ROLLING"/>-->
+    <!--<appender-ref ref="STDOUT"/>-->
+    <!--<level value="info"/>-->
+
+  </logger>
+  <logger name="jdbc.resultsettable" additivity="false">
+  <!--
+    <appender-ref ref="ROLLING"/>
+    <appender-ref ref="STDOUT"/>
+    -->
+    <level value="debug"/>
+
+  </logger>
+  <logger name="jdbc.connection" additivity="false">
+  <!--
+    <appender-ref ref="ROLLING"/>
+    -->
+    <level value="fetal"/>
+  </logger>
+  <logger name="jdbc.audit" additivity="false">
+    <!--<appender-ref ref="ROLLING"/>-->
+    <!--<appender-ref ref="STDOUT"/>-->
+    <!--<level value="info"/>-->
+  </logger>
+
+  <logger name="flunetd"  additivity="false" >
+  <!--
+    <appender-ref ref="FLOG"/>
+-->
+
+    <level value="info"/>
+  </logger>
+
+    <!--
+    <appender name="SOCKET" class="ch.qos.logback.classic.net.SocketAppender">  
+		    <remoteHost>127.0.0.1</remoteHost>
+		    <port>8092</port>
+		    <reconnectionDelay>10000</reconnectionDelay>
+		    <includeCallerData>false</includeCallerData>
+	</appender>
+  
+  <logger name="MLS_LOGGER" level="DEBUG">  
+    <appender-ref ref="SOCKET" />
+</logger>  
+-->
+    
+  <root level="info">
+  <!--
+    <appender-ref ref="ROLLING"/>
+    
+-->
+        <appender-ref ref="STDOUT"/>
+      <appender-ref ref="DB"/>
+  </root>
+</configuration>
+
