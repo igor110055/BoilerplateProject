@@ -9,9 +9,9 @@ CREATE TABLE IF NOT EXISTS tb_cm_menu
     ord character varying(5) ,
     pgm_id character varying(50) ,
     prnt_menu_cd character varying(50) ,
-    rmk character varying(4000),
-    crt_user_no bigint,
-    updt_user_no bigint,
+    rmk character varying(300),
+    crt_user_uid  character varying(32),
+    updt_user_uid  character varying(32),
     crt_dtm timestamp without time zone NOT NULL,
     updt_dtm timestamp without time zone NOT NULL,
     CONSTRAINT tb_cm_menu_pkey PRIMARY KEY (menu_cd)
@@ -28,7 +28,7 @@ comment on column tb_cm_menu.ord is '정렬';
 comment on column tb_cm_menu.pgm_id is '프로그램ID';
 comment on column tb_cm_menu.prnt_menu_cd is '상위메뉴';
 comment on column tb_cm_menu.rmk is '비고';
-comment on column tb_cm_menu.crt_user_no is '생성자no';
-comment on column tb_cm_menu.updt_user_no is '수정자no';
+comment on column tb_cm_menu.crt_user_uid is '생성자uid';
+comment on column tb_cm_menu.updt_user_uid is '수정자uid';
 comment on column tb_cm_menu.crt_dtm is '생성일';
 comment on column tb_cm_menu.updt_dtm is '수정일';

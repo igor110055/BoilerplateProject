@@ -1,1 +1,1 @@
-INSERT INTO tb_cm_user_role_cd (user_no, role_cd, crt_user_no, crt_dtm) VALUES (1, 'CM_ADMIN', 0, NOW()) ON CONFLICT (user_no,role_cd) DO NOTHING;
+INSERT INTO tb_cm_user_role_cd (user_uid, role_cd, crt_user_uid, crt_dtm) VALUES ('1ece57a644176ec38de4fd351420205c', 'CM_ADMIN', '1ece57a644176ec38de4fd351420205c', NOW()) ON CONFLICT (user_uid,role_cd) DO NOTHING;

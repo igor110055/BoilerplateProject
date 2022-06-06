@@ -1,5 +1,5 @@
 INSERT INTO tb_cm_user
-	(user_no
+	(user_uid
 	, crt_dtm
 	, updt_dtm
 	, email
@@ -12,12 +12,12 @@ INSERT INTO tb_cm_user
 	, pwd
 	, salt
 	, nick_nm
-	, crt_user_no
-	, updt_user_no
+	, crt_user_uid
+	, updt_user_uid
 	, birth
 	, gndr)
 	VALUES (
-	  1
+	  '1ece57a644176ec38de4fd351420205c'
 	, NOW()
 	, NOW()
 	, 'admin@admin.com'
@@ -30,9 +30,9 @@ INSERT INTO tb_cm_user
 	, '73dd5cbcc61e8ecfaf11c791266df4370e8b2d722813e086bbba521a15c8614aa6d3674e213bf740cf3f6ace423d79ffd22cfe7673930319dc3f743281bf1775'
 	, 'sRw3ItZTMV0bNVTJtOsLVA=='
 	, '관리자'
-	, 1
-	, 1
+	, '1ece57a644176ec38de4fd351420205c'
+	, '1ece57a644176ec38de4fd351420205c'
 	, '1982'
 	, 'm'
 	)
-    ON CONFLICT (user_no) DO NOTHING;
+    ON CONFLICT (user_uid) DO NOTHING;
