@@ -23,6 +23,7 @@
     <module>GmailSend</module>
     <module>TelegramSend</module>
     <module>BizActorJSONServlet</module>    
+    <module>GenerateUUID</module>    
     <module>RemotePush</module>
   </modules>
   <build>
@@ -48,4 +49,5 @@ mvn archetype:generate -DgroupId=com.example -DartifactId=EndDecUtils
 mvn archetype:generate -DgroupId=com.example -DartifactId=Framework
 mvn archetype:generate -DgroupId=com.example -DartifactId=BizActorJSONServlet
 mvn archetype:generate -DgroupId=com.example -DartifactId=RemotePush
+mvn archetype:generate -DgroupId=com.example -DartifactId=GenerateUUID
 -->

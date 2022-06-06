@@ -48,6 +48,7 @@
                             <scp file="${project.basedir}\..\output\BizActorJSONServlet.jar" remoteTofile="${scp.user}:${scp.password}@${scp.host}:${scp.dirCopyTo}/BizActorJSONServlet.jar" trust="true" />
                             <scp file="${project.basedir}\..\output\GmailSend.jar" remoteTofile="${scp.user}:${scp.password}@${scp.host}:${scp.dirCopyTo}/GmailSend.jar" trust="true" />
                             <scp file="${project.basedir}\..\output\UpbitRestApi.jar" remoteTofile="${scp.user}:${scp.password}@${scp.host}:${scp.dirCopyTo}/UpbitRestApi.jar" trust="true" />
+                            <scp file="${project.basedir}\..\output\GenerateUUID.jar" remoteTofile="${scp.user}:${scp.password}@${scp.host}:${scp.dirCopyTo}/GenerateUUID.jar" trust="true" />
                             
                     </target>
                 </configuration>
